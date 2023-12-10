@@ -35,3 +35,8 @@ body {
 .delBtn, .subBtn{
   width: 100px;
 }
+
+div{
+  width: 100%;
+  margin: auto;
+}

@@ -7,6 +7,7 @@ import CreateTask from './CreateTask';
 import { useNavigate } from 'react-router-dom';
 import { URLContext } from '../Store/URLContext';
 import CompletedTasks from './CompletedTasks';
+import SideBar from './SideBar';
 
 function Home() {
 
@@ -56,12 +57,12 @@ function Home() {
   })
 
   return (
-    <div className='row'>
-      <div className='col'>
+    <div>
+      <div className=''>
         {displayTasks}
         <CreateTask />
       </div>
-      <CompletedTasks />
+      {/* <SideBar /> */}
     </div>
   )
 }

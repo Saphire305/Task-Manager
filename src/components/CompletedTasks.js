@@ -2,7 +2,7 @@ import React from 'react'
 
 function CompletedTasks() {
   return (
-    <div className='col-sm'>CompletedTasks</div>
+    <div className=''>CompletedTasks</div>
   )
 }
 
