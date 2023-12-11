@@ -11,13 +11,16 @@ function SubmitEdit({ taskID, formData}) {
 
     const showFormData = async (e) => {
       e.preventDefault();
-      console.log(formData);
-      await axios.put(`${url}/${taskID}`, formData);
+      if(taskID){
+        await axios.put(`${url}/${taskID}`, formData);
+    }else{
+        await axios.post(`${url}`, formData);
+    }
       navigate("/")
     }
 
   return (
-    <div>
+    <div className='col'>
         <Button className='bg-primary subBtn' onClick={showFormData}>Submit</Button>
     </div>
   )

@@ -1,8 +1,11 @@
 import React from 'react'
+import CompletedTasks from './CompletedTasks'
 
 function SideBar() {
   return (
-    <div>SideBar</div>
+    <div className='col-sm sideBar mt-2'>
+      <CompletedTasks/>
+    </div>
   )
 }
 

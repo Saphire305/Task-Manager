@@ -2,12 +2,11 @@ import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import { Button, Card, CardBody, CardSubtitle, CardText, CardTitle } from 'reactstrap';
 import { TaskContext} from '../Store/TaskContext';
-import EditTask from './EditTask';
 import CreateTask from './CreateTask';
 import { useNavigate } from 'react-router-dom';
 import { URLContext } from '../Store/URLContext';
-import CompletedTasks from './CompletedTasks';
 import SideBar from './SideBar';
+import CompleteTaskBtn from './CompleteTaskBtn';
 
 function Home() {
 
@@ -31,38 +30,46 @@ function Home() {
   }
 
   const displayTasks = data.map((task) => {
-    return(
-        <Card
-          color="dark"
-          className='tasks my-2 mx-auto'
-          key={task.id}
-        >
-        <CardBody>
-          <CardTitle tag="h3">
-            {task.task}
-          </CardTitle>
-          <CardSubtitle
-            className="mb-2 text-muted"
-            tag="h5"
+    // console.log(task);
+    if(!task.completed){
+      return(
+          <Card
+            color="dark"
+            className='tasks my-2 mx-auto'
+            key={task.id}
           >
-            Due: {task.due}
-          </CardSubtitle>
-          <CardText>
-            {task.details}
-          </CardText>
-          <Button className='bg-primary' onClick={() => navigate(`/edittask/${task.id}`)}>Edit</Button>
-        </CardBody>
-      </Card>
-    )
+          <CardBody>
+            <CardTitle tag="h3">
+              {task.task}
+            </CardTitle>
+            <CardSubtitle
+              className="mb-2 text-muted"
+              tag="h5"
+            >
+              Due: {task.due}
+            </CardSubtitle>
+            <CardText>
+              {task.details}
+            </CardText>
+            <div className='btnDiv'>
+              <div className='col-md'>
+                <Button className='bg-primary subBtn' onClick={() => navigate(`/edittask/${task.id}`)}>Edit</Button>
+              </div>
+              <CompleteTaskBtn taskID={task.id}/>
+            </div>
+          </CardBody>
+        </Card>
+      )
+    }
   })
 
   return (
-    <div>
-      <div className=''>
+    <div className='row'>
+      <div className='col-9'>
         {displayTasks}
         <CreateTask />
       </div>
-      {/* <SideBar /> */}
+      <SideBar/>
     </div>
   )
 }

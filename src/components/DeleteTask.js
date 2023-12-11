@@ -10,10 +10,14 @@ function DeleteTask({ taskID }) {
   const navigate = useNavigate()
 
   return (
-    <div><Button className='bg-danger delBtn' onClick={async () => {
-      await axios.delete(`${url}/${taskID}`);
+    <div style={{justifyContent: 'right', display: 'flex'}}>
+      <Button className='bg-danger delBtn' onClick={async () => {
+      if(taskID){
+        await axios.delete(`${url}/${taskID}`);
+      }
       navigate("/");
-    }}>Delete</Button></div>
+    }}>Delete</Button>
+    </div>
   )
 }
 

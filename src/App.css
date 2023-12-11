@@ -20,7 +20,7 @@ body {
 
 .tasks{
   border: solid 2px black;
-  width: 80%;
+  width: 99%;
 }
 
 .newTask{
@@ -33,7 +33,7 @@ body {
 }
 
 .delBtn, .subBtn{
-  width: 100px;
+  width: 115px;
 }
 
 div{

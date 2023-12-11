@@ -5,13 +5,12 @@ import { Button, Card, CardBody, CardSubtitle, CardText, CardTitle } from 'react
 import DeleteTask from './DeleteTask';
 import SubmitEdit from './SubmitEdit';
 import { URLContext } from '../Store/URLContext';
-import axios from 'axios';
 
 function EditTask() {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const taskID = location.pathname[location.pathname.length -1];
+    let taskID = location.pathname[location.pathname.length -1];
     const {data} = useContext(TaskContext)
     let taskObj = null;
     
@@ -25,17 +24,18 @@ function EditTask() {
         setFormData(prev => ({...prev, [prop]: value}))
     }
 
-    const showFormData = async (e) => {
-        e.preventDefault();
-        await axios.post(url, formData);
-        navigate("/")
-    }
-
-    data.map(task => {
+    const getTask = () => data.map(task => {
         if(task.id === taskID){
             taskObj = task;
         }
     })
+
+    getTask()
+
+    if(!taskObj){
+        taskID = location.pathname[location.pathname.length -2] + location.pathname[location.pathname.length -1];
+        getTask()
+    }
 
   return (
     <div>
